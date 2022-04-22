@@ -16,6 +16,8 @@ function displayResults(response, currency) {
     $("#usd").text(usdValue);
     let conversion = exchange(response, usdValue, currency);
     $("#exchange").text(conversion + " " + currency);
+  } else {
+    $("#error").text("Oops! Something went wrong. Error: " + response);
   }
 }
 
