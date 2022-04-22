@@ -14,6 +14,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new Dotenv(),
     new HtmlWebpackPlugin({
       title: "Currency Exchanger",
       template: "./src/index.html",
