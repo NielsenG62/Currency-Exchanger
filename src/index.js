@@ -14,6 +14,12 @@ function displayResults(response, currency, usdValue) {
   if (response.result === "success") {
     $("#usd").text(usdValue);
     let conversion = exchange(response, usdValue, currency);
+    if (conversion === false) {
+      $("#error").html(
+        `It appears this currency code doesn't exist. Please look at the <a href="https://www.exchangerate-api.com/docs/supported-currencies">supported currency codes</a>`
+      );
+      return;
+    }
     $("#exchange").text(conversion + " " + currency);
   } else {
     $("#error").text("Oops! Something went wrong. Error: " + response);
