@@ -12,12 +12,26 @@
       <form>
         <div id="" class="row row-cols-lg-auto g-3 align-items-center">
           <div class="col-auto">
+            <label for="amount">Amount</label>
             <input
-              type="number"
+              name="Amount"
+              type="Amount"
               class="form-control"
-              placeholder="USD"
-              aria-label="USD"
-              id="usd-value"
+              placeholder="Amount"
+              aria-label="Amount"
+              id="amount"
+            />
+          </div>
+          <div class="col-auto">
+            <label for="from">From</label>
+            <input
+              name="from"
+              type="text"
+              class="form-select"
+              placeholder="From"
+              aria-label="From"
+              id="from-value"
+              list="currencies"
             />
           </div>
           <div class="col-auto">
@@ -190,14 +204,15 @@
               <option value="YER">YER - Yemeni Rial</option>
               <option value="ZMK">ZMK - Zambian Kwacha</option>
             </datalist>
+            <label for="to">To</label>
             <input
               type="text"
-              name="exchange-select"
-              id="exchange-select"
+              name="to"
+              id="to-value"
               autocomplete="on"
               list="currencies"
               class="form-select"
-              placeholder="Enter a currency"
+              placeholder="To"
             />
           </div>
           <div class="col-auto">
@@ -206,7 +221,7 @@
         </div>
       </form>
       <h2 class="hidden">
-        <span id="usd"></span> USD is equal to <span id="exchange"></span>
+        <span id="from"></span> is equal to <span id="exchange"></span>
       </h2>
       <h3 class="hidden" id="error">Placeholder</h3>
     </div>

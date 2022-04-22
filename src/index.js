@@ -5,15 +5,15 @@ import "./css/styles.css";
 import CurrencyExchange from "./js/currency";
 import { exchange } from "./js/exchange";
 
-async function apiCall(currency, usdValue) {
+async function apiCall(amount, fromValue, toValue) {
   const response = await CurrencyExchange.getSavedExchangeRates();
-  displayResults(response, currency, usdValue);
+  displayResults(response, amount, fromValue, toValue);
 }
 
-function displayResults(response, currency, usdValue) {
+function displayResults(response, amount, fromValue, toValue) {
   if (response.result === "success") {
-    $("#usd").text(usdValue);
-    let conversion = exchange(response, usdValue, currency);
+    $("#from").text(amount + "" + fromValue);
+    let conversion = exchange(response, amount, fromValue, toValue);
     if (conversion === false) {
       $("h2").addClass("hidden");
       $("#error").html(
@@ -22,7 +22,7 @@ function displayResults(response, currency, usdValue) {
       $("#error").removeClass("hidden");
       return;
     }
-    $("#exchange").text(conversion + " " + currency);
+    $("#exchange").text(conversion + " " + toValue);
     $("h2").removeClass("hidden");
   } else {
     $("#error").text("Oops! Something went wrong. Error: " + response);
@@ -33,12 +33,13 @@ $("form").on("submit", function (event) {
   event.preventDefault();
   $("#error").addClass("hidden");
   $("#error").html("placeholder");
-  let currency = $("#exchange-select").val();
-  let usdValue = $("#usd-value").val();
-  if (currency === "null" || usdValue === "") {
+  let amount = $("#amount").val();
+  let fromValue = $("#from-value").val();
+  let toValue = $("#to-value").val();
+  if (amount === "" || fromValue === "" || toValue === "") {
     $("#error").text("Please fill in the two fields");
     $("#error").removeClass("hidden");
     return;
   }
-  apiCall(currency, usdValue);
+  apiCall(amount, fromValue, toValue);
 });
