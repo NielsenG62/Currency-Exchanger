@@ -1,10 +1,10 @@
 export default class CurrencyExchange {
-  static async getExchangeRates() {
+  static async getExchangeRates(fromValue) {
     const preLoadedData = sessionStorage.getItem("exchangeRates");
     if (!preLoadedData) {
       try {
         const response = await fetch(
-          `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`
+          `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${fromValue}`
         );
         if (!response.ok) {
           throw Error(response.status);

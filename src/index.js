@@ -6,14 +6,14 @@ import CurrencyExchange from "./js/currency";
 import { exchange } from "./js/exchange";
 
 async function apiCall(amount, fromValue, toValue) {
-  const response = await CurrencyExchange.getSavedExchangeRates();
+  const response = await CurrencyExchange.getSavedExchangeRates(fromValue);
   displayResults(response, amount, fromValue, toValue);
 }
 
 function displayResults(response, amount, fromValue, toValue) {
   if (response.result === "success") {
-    $("#from").text(amount + "" + fromValue);
-    let conversion = exchange(response, amount, fromValue, toValue);
+    $("#from").text(amount + " " + fromValue);
+    let conversion = exchange(response, amount, toValue);
     if (conversion === false) {
       $("h2").addClass("hidden");
       $("#error").html(
