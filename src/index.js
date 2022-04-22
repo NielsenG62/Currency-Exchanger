@@ -21,6 +21,7 @@ function displayResults(response, currency, usdValue) {
       return;
     }
     $("#exchange").text(conversion + " " + currency);
+    $("h2").removeClass("hidden");
   } else {
     $("#error").text("Oops! Something went wrong. Error: " + response);
   }
@@ -28,6 +29,7 @@ function displayResults(response, currency, usdValue) {
 
 $("form").on("submit", function (event) {
   event.preventDefault();
+  $("#error").html("");
   let currency = $("#exchange-select").val();
   let usdValue = $("#usd-value").val();
   if (currency === "null" || usdValue === "") {
