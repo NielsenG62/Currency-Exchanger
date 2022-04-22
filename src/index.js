@@ -25,8 +25,6 @@ function displayResults(response) {
   }
 }
 
-$("document").ready(function () {
-  $("#submit").on("click", function () {
-    apiCall();
-  });
+$("#submit").on("click", function () {
+  apiCall();
 });
