@@ -1,7 +1,8 @@
 export default class CurrencyExchange {
   static async getExchangeRates(fromValue) {
     const preLoadedData = sessionStorage.getItem("exchangeRates");
-    if (!preLoadedData) {
+    console.log(JSON.parse(preLoadedData));
+    if (!preLoadedData || JSON.parse(preLoadedData).base_code !== fromValue) {
       try {
         const response = await fetch(
           `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${fromValue}`
@@ -21,8 +22,8 @@ export default class CurrencyExchange {
       return JSON.parse(preLoadedData);
     }
   }
-  static async getSavedExchangeRates() {
-    const exchange = await this.getExchangeRates();
+  static async getSavedExchangeRates(fromValue) {
+    const exchange = await this.getExchangeRates(fromValue);
     return exchange;
   }
 }

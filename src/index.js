@@ -33,9 +33,9 @@ $("form").on("submit", function (event) {
   event.preventDefault();
   $("#error").addClass("hidden");
   $("#error").html("placeholder");
-  let amount = $("#amount").val();
-  let fromValue = $("#from-value").val();
-  let toValue = $("#to-value").val();
+  let amount = $("#amount").val().toUpperCase();
+  let fromValue = $("#from-value").val().toUpperCase();
+  let toValue = $("#to-value").val().toUpperCase();
   if (amount === "" || fromValue === "" || toValue === "") {
     $("#error").text("Please fill in the two fields");
     $("#error").removeClass("hidden");
