@@ -6,7 +6,7 @@ import CurrencyExchange from "./js/currency";
 import { exchange } from "./js/exchange";
 
 async function apiCall(currency, usdValue) {
-  const response = await CurrencyExchange.getExchangeRates();
+  const response = await CurrencyExchange.getSavedExchangeRates();
   displayResults(response, currency, usdValue);
 }
 
