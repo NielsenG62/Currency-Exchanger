@@ -7,19 +7,20 @@
     <title>Currency Exchange</title>
   </head>
   <body>
-    <div class="row row-cols-lg-auto g-3 align-items-center">
-      <div class="row g-3">
+    <div class="container">
+      <div class="row row-cols-lg-auto g-3 align-items-center">
         <div class="col-auto">
           <input
             type="number"
             class="form-control"
             placeholder="USD"
             aria-label="USD"
+            id="usd-value"
           />
         </div>
         <div class="col-auto">
-          <select class="form-select" aria-label="To">
-            <option selected>USD To</option>
+          <select id="exchange-select" class="form-select" aria-label="To">
+            <option disabled selected>USD To</option>
             <option value="EUR">EUR - Euro</option>
             <option value="CAD">CAD - Canadian Dollar</option>
             <option value="AUS">AUS - Australian Dollar</option>
@@ -27,7 +28,13 @@
             <option value="KES">KES - Kenyan Shilling</option>
           </select>
         </div>
+        <div class="col-auto">
+          <button id="submit" class="btn btn-primary">Exchange</button>
+        </div>
       </div>
+      <h2>
+        <span id="usd"></span> USD is equal to <span id="exchange"></span>
+      </h2>
     </div>
   </body>
 </html>
