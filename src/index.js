@@ -3,16 +3,11 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/styles.css";
 import CurrencyExchange from "./js/currency";
+import { exchange } from "./js/exchange";
 
 async function apiCall(currency) {
   const response = await CurrencyExchange.getExchangeRates();
   displayResults(response, currency);
-}
-
-function exchange(response, usdValue, currency) {
-  let exchangeRate = response.conversion_rates[`${currency}`];
-  let conversion = usdValue * exchangeRate;
-  return conversion;
 }
 
 function displayResults(response, currency) {
