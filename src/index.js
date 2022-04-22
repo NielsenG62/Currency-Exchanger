@@ -5,14 +5,13 @@ import "./css/styles.css";
 import CurrencyExchange from "./js/currency";
 import { exchange } from "./js/exchange";
 
-async function apiCall(currency) {
+async function apiCall(currency, usdValue) {
   const response = await CurrencyExchange.getExchangeRates();
-  displayResults(response, currency);
+  displayResults(response, currency, usdValue);
 }
 
-function displayResults(response, currency) {
+function displayResults(response, currency, usdValue) {
   if (response.result === "success") {
-    let usdValue = $("#usd-value").val();
     $("#usd").text(usdValue);
     let conversion = exchange(response, usdValue, currency);
     $("#exchange").text(conversion + " " + currency);
@@ -24,5 +23,10 @@ function displayResults(response, currency) {
 $("form").on("submit", function (event) {
   event.preventDefault();
   let currency = $("#exchange-select").val();
-  apiCall(currency);
+  let usdValue = $("#usd-value").val();
+  if (currency === "null" || usdValue === "") {
+    $("#error").text("Please fill in the two fields");
+    return;
+  }
+  apiCall(currency, usdValue);
 });
