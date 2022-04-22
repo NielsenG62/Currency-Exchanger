@@ -4,9 +4,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/styles.css";
 import CurrencyExchange from "./js/currency";
 
-async function apiCall() {
+async function apiCall(currency) {
   const response = await CurrencyExchange.getExchangeRates();
-  displayResults(response);
+  displayResults(response, currency);
 }
 
 function exchange(response, usdValue, currency) {
@@ -15,16 +15,17 @@ function exchange(response, usdValue, currency) {
   return conversion;
 }
 
-function displayResults(response) {
+function displayResults(response, currency) {
   if (response.result === "success") {
     let usdValue = $("#usd-value").val();
-    let currency = $("#exchange-select").find(":selected").val();
     $("#usd").text(usdValue);
-    let conversion = exchange(response, usdValue);
+    let conversion = exchange(response, usdValue, currency);
     $("#exchange").text(conversion + " " + currency);
   }
 }
 
-$("#submit").on("click", function () {
-  apiCall();
+$("form").on("submit", function (event) {
+  event.preventDefault();
+  let currency = $("#exchange-select").val();
+  apiCall(currency);
 });
