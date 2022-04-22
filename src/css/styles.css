@@ -10,16 +10,28 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+body {
+  background-color: #aaaaaa;
+}
+
 .container {
   margin-top: 4em;
   text-align: center;
+  border: 2px solid black;
+  padding: 3em;
+  background-color: white;
 }
 
 form {
   display: flex;
   justify-content: center;
+  margin-bottom: 1em;
 }
 
 .hidden {
-  display: none;
+  visibility: hidden;
+}
+
+#error {
+  color: red;
 }
