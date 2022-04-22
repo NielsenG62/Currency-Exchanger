@@ -9,8 +9,8 @@ async function apiCall() {
   displayResults(response);
 }
 
-function exchange(response, usdValue) {
-  let exchangeRate = response.conversion_rates.currency;
+function exchange(response, usdValue, currency) {
+  let exchangeRate = response.conversion_rates[`${currency}`];
   let conversion = usdValue * exchangeRate;
   return conversion;
 }
@@ -18,13 +18,15 @@ function exchange(response, usdValue) {
 function displayResults(response) {
   if (response.result === "success") {
     let usdValue = $("#usd-value").val();
-    let currency = $("#exchange-select").val();
+    let currency = $("#exchange-select").find(":selected").val();
     $("#usd").text(usdValue);
     let conversion = exchange(response, usdValue);
     $("#exchange").text(conversion + " " + currency);
   }
 }
 
-$("#submit").on("click", function () {
-  apiCall();
+$("document").ready(function () {
+  $("#submit").on("click", function () {
+    apiCall();
+  });
 });
